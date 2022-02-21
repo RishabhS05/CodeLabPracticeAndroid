@@ -16,6 +16,7 @@
 
 package com.example.android.hilt.data
 
+import android.database.Cursor
 import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.Query
@@ -34,4 +35,10 @@ interface LogDao {
 
     @Query("DELETE FROM logs")
     fun nukeTable()
+
+    @Query("select * from logs where id = :id")
+    fun selectLogById(id: Long): Cursor?
+
+    @Query("select * from logs order by id desc")
+    fun selectAllLogsCursor(): Cursor
 }
